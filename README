@@ -112,3 +112,22 @@ This is real easy.
 Done!
 
 This can be done by anyone who has the capability moodle/course:update.
+
+********************************************************************************
+                           Uninstalling this plugin
+********************************************************************************
+
+Again pretty easy, just make sure you don't just delete the plugin or you'll end
+up with orphaned files in your file system.
+
+Doing this just makes sure all uploaded images are deleted.
+
+1. Log into your site as an admin.
+2. Browse to: 
+   Site Administration > Plugins > Local plugins > Manage local plugins
+3. Click the delete link along from courselogo.
+4. Follow through the steps until it tells you the plugin has been deleted
+   and you should remove the directory.
+5. Delete the local/courselogo directory and its contents.
+
+Done!
