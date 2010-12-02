@@ -1,0 +1,112 @@
+********************************************************************************
+*                    Course logo - A local moodle plugin.                      *
+********************************************************************************
+
+The course logo plugin provides a place where priviledged users within a Moodle
+course can upload an image that relates to the course.
+That image can then be used by theme designers and displayed anywhere they want
+within their theme.
+It is important to note that this plugin is probably not the best way to go
+about this however it does work.
+More information on this plugin, how to install and use it are included within
+the README file that comes with this plugin.
+
+The courselogo plugin like Moodle is free software: you can redistribute it 
+and/or modify it under the terms of the GNU General Public License as published 
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The courselogo plugin like Moodle is distributed in the hope that it will be 
+useful,but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+@package     local_courselogo
+@copyright   2010 Sam Hemelryk
+@license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+
+********************************************************************************
+                                Installation
+********************************************************************************
+
+Installation is simple.
+
+1. Download the package to your computer.
+2. Unzip the package to the local directory within your Moodle installation.
+3. Open your browser and visit your sites admin page http://youdomain.com/admin/
+4. Proceed through the upgrade process.
+
+Done!
+
+********************************************************************************
+                              Theme Integration
+********************************************************************************
+
+After installing this plugin you will want to edit your theme to make use of the
+images associated with your courses.
+
+1. Creating and using an <img> tag.
+
+The easiest way to use this the course logo is to generate an <img> tag and 
+simply use that within your HTML.
+
+Before we begin first put your default logo into your theme's pix directory and
+name it defaultlogo, you can change this if you want but I've used it for the 
+following examples.
+
+First open your layout file e.g. theme/yourtheme/layout/general.php
+Somewhere in the first php block (before echo $OUTPUT->doctype()) add the 
+following code:
+
+--------------------------------------------------------------------------------
+require_once($CFG->dirroot.'/local/courselogo/lib.php');
+$logoimg = local_courselogo_get_logo_html($PAGE->course, 'defaultlogo');
+--------------------------------------------------------------------------------
+
+Then where ever you want to use the <img> tag within your theme just use the
+following:
+
+--------------------------------------------------------------------------------
+<?php echo $logoimg; ?>
+--------------------------------------------------------------------------------
+
+2. Generating CSS and a background image style.
+
+It is possible to use the logo within CSS as a background image as well if you 
+would prefer to to do that.
+Within your layout file(s) you would have to add the following block of code
+within the <head> tag for you page.
+
+--------------------------------------------------------------------------------
+<style type="text/css">
+<?php
+$courseid = $PAGE->course->id;
+$url = local_courselogo_get_logo_url($PAGE->course, 'defaultlogo');
+echo ".course-{$courseid} .customcourselogo {"
+echo "background-image:url($url);"
+echo "background-repeat:no-repeat;"
+echo "}";
+</style>
+--------------------------------------------------------------------------------
+
+This will produce a snippet of CSS that will be class based (to avoid caching)
+and will display the image as a background image within any element you put add
+the class 'customcourselogo' to.
+
+********************************************************************************
+                            Setting a course logo
+********************************************************************************
+
+This is real easy.
+
+1. Log into you site as the admin, manager, or teacher.
+2. Browse to a course that you have access to.
+3. Within the courses navigation you will see a link at the bottom labeled
+   something like "Select logo", click it.
+4. One the next page simply use the file picker to select the image you want.
+5. Click save changes.
+
+Done!
+
+This can be done by anyone who has the capability moodle/course:update.
