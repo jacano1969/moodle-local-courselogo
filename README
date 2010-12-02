@@ -81,6 +81,7 @@ within the <head> tag for you page.
 --------------------------------------------------------------------------------
 <style type="text/css">
 <?php
+require_once($CFG->dirroot.'/local/courselogo/lib.php');
 $courseid = $PAGE->course->id;
 $url = local_courselogo_get_logo_url($PAGE->course, 'defaultlogo');
 echo ".course-{$courseid} .customcourselogo {"
