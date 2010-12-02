@@ -32,6 +32,7 @@
 
 $string['currentlogo'] = 'Current logo';
 $string['navtitle'] = 'Select logo';
+$string['pluginname'] = 'Course logo plugin';
 $string['selectalogo'] = 'Select a logo to use with this course.';
 $string['selectanimage'] = 'Select an image to use';
 $string['uploadsuccess'] = 'Course logo successfully uploaded and saved.';
