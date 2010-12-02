@@ -30,4 +30,4 @@
  * This file contains the version number of the courselogo plugin.
  */
 
-$plugin->version = 2010120100;
+$plugin->version = 2010120200;
